@@ -1,8 +1,8 @@
-/*
 	Editorial by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+
 
 (function($) {
 
@@ -261,4 +261,286 @@
 
 			});
 
+
 })(jQuery);
+
+const surpriseButton = document.getElementById("SurpriseButton");
+const ingredientsText = document.getElementById("ingredientsText");
+const stepsText = document.getElementById("stepsText");
+
+const dishName = document.getElementById("dishName");
+
+if (surpriseButton && ingredientsText) {
+	surpriseButton.addEventListener("click", function () {
+		fetchRandomRecipe()
+			.then(recipe => {
+				// Extract recipe title from API response
+				const recipeTitle = recipe.title;
+
+				// Set recipe title as content of dishName element
+				const smallElement = dishName.querySelector('small');
+				if (smallElement) {
+					smallElement.innerText = recipeTitle;
+				}
+				// Extract ingredients part of the recipe
+				const ingredients = recipe.extendedIngredients;
+				// Create a string to represent ingredients
+				let ingredientsString = "Ingredients:\n";
+				ingredients.forEach(ingredient => {
+					ingredientsString += `${ingredient.original}\n`;
+				});
+				// Replace ingredients text with new content
+				ingredientsText.innerText = ingredientsString;
+
+				// Extract image URL from the recipe
+				const imageUrl = recipe.image;
+
+				const recipeImage = document.getElementById("dishImage").querySelector("img");
+				// Set image src attribute to recipe image URL
+				recipeImage.src = imageUrl;
+
+				// Get cooking steps and concatenate into a string
+				const steps = recipe.analyzedInstructions[0].steps;
+				const stepsHtml = steps.map(step => `<li>${step.step}</li>`).join('');
+
+				// Set cooking steps string as innerHTML of stepsText element
+				stepsText.innerHTML = `<ol>${stepsHtml}</ol>`;
+
+				
+			})
+			.catch(error => {
+				console.error('Error fetching random recipe:', error);
+			});
+	});
+}
+
+function fetchRandomRecipe() {
+	const apiKey = 'e445f97d26c346a0b8b8410e437af6b5';
+	const apiUrl = `https://api.spoonacular.com/recipes/random?apiKey=${apiKey}`;
+
+	return fetch(apiUrl)
+		.then(response => {
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json();
+		})
+		.then(data => {
+			// Return a single recipe object
+			return data.recipes[0];
+		});
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+	const generateButton = document.getElementById("generateButton");
+	// Ensure button element exists before binding event
+	if (generateButton) {
+		generateButton.addEventListener("click", function (event) {
+			event.preventDefault();
+
+			const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+			// Check if any checkbox is checked
+			let anyCheckboxChecked = false;
+			checkboxes.forEach(checkbox => {
+				if (checkbox.checked) {
+					anyCheckboxChecked = true;
+					return; // Break the loop if any checkbox is checked
+				}
+			});
+
+			// If no checkbox is checked, show alert
+			if (!anyCheckboxChecked) {
+				alert('Please select at least one checkbox before generating.');
+				return;
+			}
+
+
+
+
+			// Get values of checked checkboxes
+			var ingredients = [];
+			$("input[type=checkbox]:checked").each(function () {
+				ingredients.push($(this).attr("id"));
+			});
+
+			// Construct API link
+			var apiUrl = "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredients.join(",+") + "&number=3&apiKey=e445f97d26c346a0b8b8410e437af6b5";
+
+			// Show apiUrl in alert
+			//alert(apiUrl);
+
+			// Redirect to dishes.html page with API link as parameter
+			window.location.href = "dishes.html?apiUrl=" + encodeURIComponent(apiUrl);
+		});
+	}
+
+	// Perform actions when dishes.html page is loaded
+	if (window.location.pathname.includes("dishes.html")) {
+		// Get parameters from URL
+		const urlParams = new URLSearchParams(window.location.search);
+		const apiUrl = urlParams.get('apiUrl');
+
+		if (apiUrl) {
+			// Fetch recipe JSON data
+			fetch(apiUrl)
+				.then(response => response.json())
+				.then(data => {
+					// Check if recipe data exists
+					if (data && data.length > 0) {
+						// Extract information of the first recipe
+						const recipe = data[0];
+						// Update content on the page
+						document.getElementById('dish_1').innerText = recipe.title; // Replace dish name
+						document.getElementById('recipe_1').innerText = recipe.missedIngredients.map(ingredient => ingredient.original).join(', '); // Replace ingredients
+						const recipeImage = document.getElementById("dishImage_1").querySelector("img");
+						// Set image src attribute to recipe image URL
+						recipeImage.src = recipe.image; // Replace image link
+
+						const recipe_2 = data[1];
+						// Update content on the page
+						document.getElementById('dish_2').innerText = recipe_2.title; // Replace dish name
+						document.getElementById('recipe_2').innerText = recipe_2.missedIngredients.map(ingredient => ingredient.original).join(', '); // Replace ingredients
+						const recipeImage_2 = document.getElementById("dishImage_2").querySelector("img");
+						// Set image src attribute to recipe image URL
+						recipeImage_2.src = recipe_2.image; // Replace image link
+
+						const recipe_3 = data[2];
+						// Update content on the page
+						document.getElementById('dish_3').innerText = recipe_3.title; // Replace dish name
+						document.getElementById('recipe_3').innerText = recipe_3.missedIngredients.map(ingredient => ingredient.original).join(', '); // Replace ingredients
+						const recipeImage_3 = document.getElementById("dishImage_3").querySelector("img");
+						// Set image src attribute to recipe image URL
+						recipeImage_3.src = recipe_3.image; // Replace image link
+					} else {
+						console.error('No recipes found in the response.');
+						alert('No recipes found. Please try again later.');
+					}
+				})
+				.catch(error => {
+					console.error('Error fetching recipes:', error);
+					alert('Error fetching recipes. Please try again later.');
+				});
+		} else {
+			console.error('API URL not found in URL parameters.');
+			alert('API URL not found. Please try again.');
+		}
+	}
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+	// Perform actions when dishes.html page is loaded
+	if (window.location.pathname.includes("recipe.html")) {
+		// Get parameters from URL
+		const urlParams = new URLSearchParams(window.location.search);
+		const apiUrl = urlParams.get('apiUrl');
+
+		if (apiUrl) {
+			// Fetch recipe JSON data
+			fetch(apiUrl)
+				.then(response => response.json())
+				.then(data => {
+					// Check if recipe data exists
+					if (data && data.length > 0) {
+						// Extract information of the first recipe
+						const recipe = data[0];
+						// Update content on the page
+						// Extract recipe title from API response
+						const recipeTitle = recipe.title;
+
+						// Set recipe title as content of dishName element
+						const smallElement = dishName.querySelector('small');
+						if (smallElement) {
+							smallElement.innerText = recipeTitle;
+						}
+
+						const recipeImage = document.getElementById("dishImage").querySelector("img");
+						// Set image src attribute to recipe image URL
+						recipeImage.src = recipe.image; // Replace image link
+
+						// Save recipe ID
+						const recipeId = recipe.id;
+						// Construct URL to get detailed cooking steps data
+						const detailedInstructionsUrl = `https://api.spoonacular.com/recipes/${recipeId}/analyzedInstructions?apiKey=e445f97d26c346a0b8b8410e437af6b5`;
+
+						// Send second request to get detailed cooking steps data
+						fetch(detailedInstructionsUrl)
+							.then(response => response.json())
+							.then(detailedData => {
+								// Handle returned detailed cooking steps data
+								console.log('Detailed instructions data:', detailedData);
+								// Here you can update the page or perform other actions based on the returned detailed cooking steps data
+
+								// Initialize an empty string to store ingredients information
+								let ingredientsString = "Ingredients:\n";
+
+								// Loop through each step and add ingredients information to the string
+								detailedData[0].steps.forEach(step => {
+									step.ingredients.forEach(ingredient => {
+										ingredientsString += `${ingredient.name}\n`;
+									});
+								});
+
+								// Replace ingredients text with new content
+								const ingredientsText = document.getElementById("ingredientsText");
+								ingredientsText.innerText = ingredientsString;
+								// Get cooking steps and concatenate into a string
+								const steps = detailedData.length > 0 && detailedData[0].steps ? detailedData[0].steps : [];
+								const stepsHtml = steps.map(step => `<li>${step.step}</li>`).join('');
+
+								// Set cooking steps string as innerHTML of stepsText element
+								const stepsText = document.getElementById("stepsText");
+								stepsText.innerHTML = `<ol>${stepsHtml}</ol>`;
+
+							})
+							.catch(error => {
+								console.error('Error fetching detailed instructions:', error);
+								alert('Error fetching detailed instructions. Please try again later.');
+							});
+
+					} else {
+						console.error('No recipes found in the response.');
+						alert('No recipes found. Please try again later.');
+					}
+				})
+				.catch(error => {
+					console.error('Error fetching recipes:', error);
+					alert('Error fetching recipes. Please try again later.');
+				});
+		} else {
+			console.error('API URL not found in URL parameters.');
+			alert('API URL not found. Please try again.');
+		}
+	}
+
+	// Perform actions when a link is clicked
+	document.getElementById('dish_1').addEventListener('click', function (event) {
+		// Prevent default link click behavior
+		event.preventDefault();
+
+		// Get current URL parameters containing API URL
+		const apiUrl = new URLSearchParams(window.location.search).get('apiUrl');
+
+		// Construct URL for recipe.html page with API URL as parameter
+		const recipePageUrl = `recipe.html?apiUrl=${encodeURIComponent(apiUrl)}`;
+
+		// Redirect to recipe.html page
+		window.location.href = recipePageUrl;
+	});
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+	// Add click event handler on clear button
+	document.getElementById('clearButton').addEventListener('click', function () {
+		// Get all checkbox elements on the page
+		const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+		// Loop through checkbox elements and set their checked state to unchecked
+		checkboxes.forEach(checkbox => {
+			checkbox.checked = false;
+		});
+	});
+});
