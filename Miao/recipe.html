@@ -28,19 +28,32 @@
                             <div class="container">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <header class="major" style="height: 50px;"><small class="form-text" style="font-size: 20px;">Rosat beef</small></header>
+                                        <header class="major" id="dishName" style="height: 50px;"><small class="form-text" style="font-size: 20px;">Rosat beef</small></header>
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-6" style="width: 330px;"><img src="images/pic10.jpg" alt="" style="width: 300px;"></div>
+                                    <div class="col-md-6" id="dishImage" style="width: 330px;"><img src="assets/img/pic10.jpg" alt="" style="width: 300px;"></div>
                                     <div class="col-md-6">
-                                        <p style="height: 247.115px;width: 380px;">Ingredients: Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat commodo eu sed ante lacinia. Sapien a lorem in integer ornare praesent commodo adipiscing arcu in massa commodo lorem accumsan at odio massa ac ac. Semper adipiscing varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+                                        <div id="ingredientsText" style="height: 247.115px; width: 380px; overflow-y: auto;">Ingredients: Nunc lacinia ante
+                                            nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante
+                                            amet placerat aliquet. Volutpat commodo eu sed ante lacinia. Sapien a lorem in integer ornare praesent commodo
+                                            adipiscing arcu in massa commodo lorem accumsan at odio massa ac ac. Semper adipiscing varius montes viverra
+                                            nibh in adipiscing blandit tempus accumsan.</div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <p style="height: 247.115px;width: 760px;">Steps:&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1. Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non&nbsp; &nbsp; 2. faucibus ornare mi ut ante amet placerat aliquet. Volutpat commodo eu sed ante lacinia. Sapien a lorem&nbsp; 3.&nbsp; in integer ornare praesent commodo adipiscing arcu in massa commodo lorem accumsan at odio massa&nbsp; 4.&nbsp; ac ac. Semper adipiscing varius montes viverra nibh in adipiscing blandit tempus accumsan.</p>
+                                        <p id="stepsText" style="height: 247.115px; width: 380px; overflow-y: auto; font-family: inherit; font-size: inherit;">
+                                            Steps: Nunc lacinia ante
+                                            nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante
+                                            amet placerat aliquet. Volutpat commodo eu sed ante lacinia. Sapien a lorem in integer ornare praesent commodo
+                                            adipiscing arcu in massa commodo lorem accumsan at odio massa ac ac. Semper adipiscing varius montes viverra
+                                            nibh in adipiscing blandit tempus accumsan.
+                                        </p>
                                     </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><a id="SurpriseButton" class="button"  style="width: 132.167px;">surprise me</a></div>
                                 </div>
                             </div>
                         </form>
@@ -58,12 +71,12 @@
                         <h2>Menu</h2>
                     </header>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="dishes.html">BEFF DISHES</a></li>
-                        <li>PORK DISHES</li>
-                        <li>FISH DISHES</li>
-                        <li>CHICKEN DISHES</li>
-                        <li>VEGAN</li>
+                        <li style="height: 42.0208px;"><a href="index.html">Home</a></li>
+                        <li><a href="generic.html">BEFF DISHES</a></li>
+                        <li><a href="elements.html">PORK DISHES</a></li>
+                        <li style="height: 42.0208px;">FISH DISHES</li>
+                        <li><a href="#">CHICKEN DISHES</a></li>
+                        <li style="height: 42.0208px;">VEGAN</li>
                         <li><span class="opener">2</span><span class="opener">3</span><a href="#">4</a></li>
                     </ul>
                 </nav>
@@ -90,6 +103,9 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+
+    
 </body>
 
 </html>
