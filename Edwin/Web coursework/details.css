@@ -1,0 +1,71 @@
+.details-container {
+    display: grid; 
+    grid-template-columns: 520px 950px;
+    grid-template-rows: 60px 270px 400px; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+    "food-picture dish-name"
+    "food-picture required-ingredients"
+    "food-picture steps";
+    padding: 2%;
+    margin: 1%;
+    background-color: #DDD;
+    border-radius: 10px;
+    width: 98%;
+    height: auto
+}
+      
+.food-picture { 
+    grid-area: food-picture;
+    width: 510px;
+    border-radius: 5px;
+    padding-right: 20px;
+}
+
+      
+.dish-name { 
+    grid-area: dish-name;
+    font-size: 30px;
+    font-weight: bold;
+    color: #df8217;
+}
+      
+.required-ingredients { 
+    grid-area: required-ingredients;
+    font-size: 20px;
+}
+
+.required-ingredients h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(239, 203, 41);
+    margin-bottom: 5px;
+}
+
+ul {
+    list-style-type: none;
+}
+      
+.steps { 
+    grid-area: steps;
+    font-size: 18px;
+}
+
+.steps h3 {
+    font-size: 30px;
+    font-weight: bold;
+    color: crimson;
+    margin-bottom: 5px;
+}
+
+.dish-name,
+.required-ingredients,
+.steps {
+    padding: 10px;
+    background-color: rgb(255, 255, 237);
+}
+
+
+      
+
+
