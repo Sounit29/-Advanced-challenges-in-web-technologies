@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="recipesStyle.css">
+
+    <!--Bosicons CSS-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+
+    <title>Food Recipe</title>
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="./png/logo4.png" alt="logo">
+                </span>
+
+                <div class="text header-text">
+                    <span class="name">Food Recipe</span>
+                </div>
+            </div>
+
+            <i class='bx bx-menu toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <li class="search-box">
+                    <i class='bx bx-search icon'></i>
+                        <input type="search" placeholder="Search...">
+                </li>
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="bx bx-home-alt icon"></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fas fa-hamburger icon"></i>
+                            <span class="text nav-text">Beef</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fa-solid fa-bacon icon"></i>
+                            <span class="text nav-text">Pork</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fa-solid fa-fish icon"></i>
+                            <span class="text nav-text">Seafood</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fa-solid fa-drumstick-bite icon"></i>
+                            <span class="text nav-text">Chicken</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fa-solid fa-leaf icon"></i>
+                            <span class="text nav-text">Vegan</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class="fa-solid fa-cheese icon"></i>
+                            <span class="text nav-text">Dessert</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="home">
+        <div id="recipes">
+            <!-- Recipe boxes will be dynamically added here -->
+            
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    <script src="recipesScript.js"></script>
+
+</body>
+</html>
