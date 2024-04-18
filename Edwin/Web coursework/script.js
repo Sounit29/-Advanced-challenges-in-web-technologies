@@ -19,7 +19,46 @@ const body = document.querySelector("body"),
         });
       }
 
-      document.addEventListener('DOMContentLoaded', function() {
-        var clearButton = document.querySelector('.clear');
-        clearButton.addEventListener('click', clearCheckboxes);
+document.addEventListener("DOMContentLoaded", function () {
+  var clearButton = document.querySelector(".clear");
+  var generateButton = document.querySelector(".generate");
+  var homeLink = document.getElementById("home-link");
+
+  clearButton.addEventListener("click", clearCheckboxes);
+
+  generateButton.addEventListener("click", function () {
+    var selectedIngredients = getSelectedIngredients();
+    if (selectedIngredients.length > 0) {
+      window.location.href = "recipes.html?ingredients=" + selectedIngredients.join(',');
+    } else {
+      alert("Please select at least one ingredient.");
+    }
+  });
+
+  // Check if on index.html page before adding event listener to home link
+  if (window.location.pathname.includes("/index.html")) {
+    homeLink.addEventListener("click", function (event) {
+      event.preventDefault();
+      window.location.href = "index.html";
+    });
+  }
+  const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
+
+  viewDetailsButtons.forEach(button => {
+      button.addEventListener('click', function() {
+          const recipeId = button.closest('.recipe-box').dataset.recipeId;
+          window.location.href = `details.html?recipeId=${recipeId}`;
       });
+  });
+});
+
+function getSelectedIngredients() {
+  var selectedIngredients = [];
+  var checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        
+  checkboxes.forEach(function(checkbox) {
+    selectedIngredients.push(checkbox.nextElementSibling.textContent);
+  });
+        
+  return selectedIngredients;
+}
