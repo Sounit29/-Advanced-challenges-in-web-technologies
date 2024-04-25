@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Check if on index.html page before adding event listener to home link
     if (window.location.pathname.includes("/index.html")) {
         homeLink.addEventListener("click", function (event) {
             event.preventDefault();
@@ -91,11 +90,9 @@ function searchRecipes() {
     const searchInput = document.getElementById('search-input');
     const searchTerm = searchInput.value.trim().toLowerCase();
 
-    // Filter recipes based on name
     const filteredRecipes = recipesData.filter(recipe => {
         return recipe.name.toLowerCase().includes(searchTerm);
     });
 
-    // Generate recipe boxes for filtered recipes
     generateRecipeBoxes(filteredRecipes);
 }

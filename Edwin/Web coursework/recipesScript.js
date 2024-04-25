@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     const recipesContainer = document.getElementById('recipes');
     const beefLink = document.getElementById('beef-link');
+    const porkLink = document.getElementById('pork-link');
+    const chickenLink = document.getElementById('chicken-link');
+    const seafoodLink = document.getElementById('seafood-link');
+    const veganLink = document.getElementById('vegan-link');
     
     // Example data for testing
     const recipesData = [
@@ -69,30 +73,35 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-
     function getSelectedIngredients() {
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const ingredients = urlParams.get('ingredients');
         return ingredients ? ingredients.split(',') : [];
     }
-    
 
-    function displayRecipes() {
-        const selectedIngredients = getSelectedIngredients();
-        const filteredRecipes = recipesData.filter(recipe => {
-            return selectedIngredients.some(ingredient => recipe.ingredients.includes(ingredient));
+    function getFilteredRecipes(ingredient) {
+        return recipesData.filter(recipe => {
+            return recipe.ingredients.some(item => {
+                const normalizedItem = item.toLowerCase();
+                const normalizedIngredient = ingredient.toLowerCase();
+                return normalizedItem.includes(normalizedIngredient) || normalizedIngredient.includes(normalizedItem);
+            });
         });
-        generateRecipeBoxes(filteredRecipes);
+    }
+     
+    function displayRecipes(recipes) {
+        generateRecipeBoxes(recipes);
     
         const viewDetailsButtons = document.querySelectorAll('.view-details-btn');
         viewDetailsButtons.forEach(button => {
             button.addEventListener('click', function() {
                 const recipeIndex = parseInt(button.closest('.recipe-box').dataset.recipeId) - 1;
                 const recipeId = recipeIndex + 1;
-                const recipe = filteredRecipes[recipeIndex];
+                const recipe = recipes[recipeIndex];
                 const url = `details.html?recipeId=${recipeId}`;
     
+                const selectedIngredients = getSelectedIngredients();
                 if (selectedIngredients.length > 0) {
                     const queryString = selectedIngredients.join(',');
                     window.location.href = `${url}&ingredients=${queryString}`;
@@ -103,5 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }            
     
-    displayRecipes();
+    const selectedIngredients = getSelectedIngredients();
+    if (selectedIngredients.length > 0) {
+        const filteredRecipes = getFilteredRecipes(selectedIngredients[0]);
+        displayRecipes(filteredRecipes);
+    } else {
+        displayRecipes(recipesData);
+    }
 });
