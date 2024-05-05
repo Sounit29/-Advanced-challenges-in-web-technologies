@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --body-color: #E4E9F7;
+            --sidebar-color: #FFF;
+            --primary-color: #ab7232;
+            --primary-color-light: #F6F5FF;
+            --toggle-color: #DDD;
+            --text-color: #707070;
+
+            --tran-02: all 0.2s ease;
+            --tran-03: all 0.3s ease;
+            --tran-04: all 0.4s ease;
+            --tran-05: all 0.5s ease;
+        }
+
+        #recipes {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .recipe-box {
+            width: 38%;
+            height: 744px;
+            margin: 150px auto;
+            padding: 30px;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #DDD;
+            color: var(--text-color);
+            margin-left: 600px;
+
+        }
+
+        .recipe-box h2 {
+            font-size: 25px;
+            margin-top: -7px;
+            margin-bottom: 10px;
+            color: var(--primary-color)
+        }
+
+        .recipe-box p {
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+        .recipe-box ul {
+            margin-bottom: 15px;
+            font-size: 17px;
+            color: rgb(218, 132, 13);
+        }
+
+        .recipe-box ul li {
+            list-style-type: none;
+        }
+
+        .recipe-box h3 {
+            color: #0056b3;
+        }
+
+        .recipe-box ol {
+            color: #0056b3;
+            margin-left: 10px;
+        }
+
+        .recipe-box img {
+            max-width: 30%;
+        }
+
+        .recipe-box button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .recipe-box button:hover {
+            background-color: #0056b3;
+        }
+
+        @import url("https://fonts.googleapis.com/css2?family=Madimi+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+        * {
+            font-family: "Madimi One", sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        :root {
+            --body-color: #0000;
+            --sidebar-color: #252525;
+            --primary-color: #fff;
+            --primary-color-light: #f6f5ff;
+            --toggle-color: #ddd;
+            --text-color: #707070;
+
+            --tran-02: all 0.2s ease;
+            --tran-03: all 0.3s ease;
+            --tran-04: all 0.4s ease;
+            --tran-05: all 0.5s ease;
+        }
+
+        body {
+            height: 100vh;
+            background: #000;
+            background-image: url(./png/bg4.jpg);
+            background-size: cover;
+            background-position: center;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            padding: 10px 14px;
+            background: #000;
+            transition: var(--tran-05);
+            z-index: 100;
+        }
+
+        .sidebar.close {
+            width: 88px;
+        }
+
+        .sidebar .text {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-color);
+            transition: var(--tran-03);
+            white-space: nowrap;
+            opacity: 1;
+        }
+
+        .sidebar.close .text {
+            opacity: 0;
+        }
+
+        .sidebar .image {
+            min-width: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar li {
+            height: 50px;
+            margin-top: 10px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .sidebar li .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 60px;
+            font-size: 20px;
+        }
+
+        .sidebar li .icon,
+        .sidebar li .text {
+            color: var(--text-color);
+            transition: var(--tran-02);
+        }
+
+        .sidebar header {
+            position: relative;
+        }
+
+        .sidebar .image-text img {
+            width: 57px;
+            border-radius: 29px;
+        }
+
+        .sidebar header .image-text {
+            display: flex;
+            align-items: center;
+        }
+
+        header.image-text .header-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-text .name {
+            font-weight: 600;
+            font-size: 25px;
+        }
+
+        .sidebar header .toggle {
+            position: absolute;
+            top: 45%;
+            right: -25px;
+            transform: translateY(-50%);
+            height: 25px;
+            width: 25px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #707070;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .sidebar .search-box {
+            background: #000000;
+            border-radius: 6px;
+        }
+
+        .sidebar .search-box:hover {
+            background-color: #f6f5ff;
+        }
+
+
+
+        .sidebar li a {
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: var(--tran-04);
+        }
+
+        .sidebar li a:hover {
+            background: var(--primary-color);
+        }
+
+        .sidebar li a:hover .icon,
+        .sidebar li a:hover .text {
+            color: var(--sidebar-color);
+        }
+
+        .home {
+            position: relative;
+            height: 8vh;
+            left: 250px;
+            width: calc(100% - 250px);
+            background: var(--body-color);
+            transition: var(--tran-05);
+        }
+
+        .home .text {
+            font-size: 30px;
+            font-weight: 1000;
+            color: #fff;
+            padding: 8px 40px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .search-box input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            font-size: 17px;
+            font-weight: 500;
+            left: 0%;
+            background: #f6f5ff;
+            margin-left: 399px;
+            margin-top: -44px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3px;
+            top: 2px;
+        }
+
+        .search-box input {
+            padding: 4px 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 17px;
+            width: 200px;
+        }
+
+        .search-box i {
+            font-size: 20px;
+            color: #666;
+            margin-top: -43px;
+            margin-left: -39px;
+            top: 0px;
+        }
+
+
+        .sidebar.close~.home {
+            left: 88px;
+            width: calc(100% - 88px);
+        }
+
+
+
+
+        .meat,
+        .vegetable,
+        .others {
+            position: relative;
+            height: 24vh;
+            left: 250px;
+            max-width: 87%;
+            max-height: 100%;
+            margin: 2% 1% 1% 1%;
+            border-radius: 15px;
+            background-color: #1c1c1c;
+            transition: var(--tran-05);
+            overflow-y: hidden;
+            padding-bottom: 0px;
+            margin-right: 15px;
+        }
+
+        .meat,
+        .vegetable,
+        .others {
+            left: 107px;
+        }
+
+        .meat label,
+        .vegetable label,
+        .others label {
+            margin-right: -14px !important;
+        }
+
+
+
+        .meat .text,
+        .vegetable .text,
+        .others .text {
+            font-size: 44px;
+            font-weight: 500;
+            color: var(--text-color);
+            padding: 0px 20px;
+        }
+
+        .checkbox {
+            position: relative;
+            height: 30vh;
+            padding: 0.3% 1% 0 1.5%;
+        }
+
+        .meat label,
+        .others label {
+            font-size: 19px;
+            font-weight: 500;
+            width: 16%;
+            display: inline-block;
+            color: rgb(249, 182, 110);
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        .vegetable label {
+            font-size: 20px;
+            font-weight: 500;
+            width: 16%;
+            display: inline-block;
+            color: rgb(249, 182, 110);
+            cursor: pointer;
+            margin-left: 5px;
+        }
+
+        #check {
+            cursor: pointer;
+        }
+
+        #check:checked {
+            accent-color: rgb(0, 102, 255);
+        }
+
+
+
+
+        .button {
+            display: flex;
+            margin-left: 4%;
+            justify-content: flex-end;
+        }
+
+        .button .clear {
+            font-size: 22px;
+            font-weight: 500;
+            width: 200px;
+            border-radius: 10px;
+            padding: 5px 11px;
+            color: #463f3fd4;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+            margin-right: 10px;
+            margin-left: auto;
+        }
+
+        .button .generate {
+            font-size: 22px;
+            font-weight: 500;
+            width: 200px;
+            border-radius: 10px;
+            padding: 5px 11px;
+            color: #463f3fd4;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .button .surprise {
+            font-size: 22px;
+            font-weight: 500;
+            width: 200px;
+            border-radius: 10px;
+            padding: 5px 11px;
+            color: #463f3fd4;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+            margin-right: 10px;
+            text-align: center;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-decoration: none;
+
+            transition: background-color 0.3s ease;
+
+        }
+
+        .button .surprise:hover {
+            background: #f79940;
+
+        }
+
+        .button .surprise:focus {
+            outline: none;
+
+        }
+
+        .button .surprise:active {
+            transform: scale(0.98);
+
+        }
+
+        .sidebar.close~.button {
+            left: 44%;
+            width: calc(100% - 88px);
+            top: 0%;
+            bottom: 0%;
+        }
+
+        .button .clear:hover {
+            background: #fc6656;
+        }
+
+        .button .generate:hover {
+            background: #56bffc;
+        }
+
+        .button .surprise:hover {
+            background: #f79940;
+        }
+
+        .button:hover {
+            color: #ffffff;
+        }
+    </style>
+
+
+    <!--CSS-->
+
+    <link rel="stylesheet" href="/ST-web_2/public/recipeStyle.css">
+    <link rel="stylesheet" href="/ST-web_2/public/style2.css">
+
+
+
+    <!--Bosicons CSS-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <!--JS-->
+
+    <script src="main.js"></script>
+    <script src="recipeScript.js"></script>
+
+    <title>Food Recipe</title>
+
+</head>
+
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="./png/new.jpeg" alt="logo">
+                </span>
+            </div>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="Inro_page.html">
+                            <i class="bx bx-home-alt icon"></i>
+                            <span class="text nav-text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="https://www.bbcgoodfood.com/recipes/collection/beef-recipes">
+                            <i class="fas fa-hamburger icon"></i>
+                            <span class="text nav-text">Beef</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="https://www.bbcgoodfood.com/recipes/collection/pork-recipes">
+                            <i class="fa-solid fa-bacon icon"></i>
+                            <span class="text nav-text">Pork</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="https://www.bbcgoodfood.com/recipes/collection/seafood-recipes">
+                            <i class="fa-solid fa-fish icon"></i>
+                            <span class="text nav-text">Seafood</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="https://www.bbcgoodfood.com/recipes/collection/chicken-recipes">
+                            <i class="fa-solid fa-drumstick-bite icon"></i>
+                            <span class="text nav-text">Chicken</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="https://www.bbcgoodfood.com/recipes/collection/vegan-recipes">
+                            <i class="fa-solid fa-leaf icon"></i>
+                            <span class="text nav-text">Vegan</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="https://www.bbcgoodfood.com/recipes/collection/dessert-recipes">
+                            <i class="fa-solid fa-cheese icon"></i>
+                            <span class="text nav-text">Dessert</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="recipes">
+        <!-- Recipe boxes will be dynamically added here -->
+    </div>
+
+</body>
+
+</html>

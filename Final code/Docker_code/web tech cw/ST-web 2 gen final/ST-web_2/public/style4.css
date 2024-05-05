@@ -1,0 +1,202 @@
+/* Google Font Import */
+@import url("https://fonts.googleapis.com/css2?family=Madimi+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  font-family: "Madimi One", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  font-style: normal;
+}
+
+:root {
+  /* ===== Colors ===== */
+  --body-color: #0000;
+  --sidebar-color: #252525;
+  --primary-color: #fff;
+  --primary-color-light: #f6f5ff;
+  --toggle-color: #ddd;
+  --text-color: #707070;
+
+  /* ===== Transition ===== */
+  --tran-02: all 0.2s ease;
+  --tran-03: all 0.3s ease;
+  --tran-04: all 0.4s ease;
+  --tran-05: all 0.5s ease;
+}
+
+body {
+  height: 100vh;
+  background: #000;
+  background-image: url(./png/bg4.jpg);
+  background-size: cover;
+  background-position: center;
+  animation: fadeIn 1s ease; /* Fade-in animation */
+}
+
+/* Fade-in animation keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 250px;
+  padding: 10px 14px;
+  background: #000;
+  transition: var(--tran-05);
+  z-index: 100;
+}
+
+/* Sidebar close animation */
+.sidebar.close {
+  width: 88px;
+}
+
+/* ===== Reusable CSS ===== */
+.sidebar .text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color);
+  transition: var(--tran-03);
+  white-space: nowrap;
+  opacity: 1;
+}
+
+/* Sidebar close text animation */
+.sidebar.close .text {
+  opacity: 0;
+}
+
+/* Sidebar header toggle animation */
+.sidebar header .toggle {
+  transition: transform var(--tran-03);
+}
+
+/* Sidebar close toggle animation */
+.sidebar.close header .toggle {
+  transform: translateX(-25px);
+}
+
+/* Sidebar search-box animation */
+.sidebar .search-box {
+  transition: background-color var(--tran-03);
+}
+
+/* Sidebar close search-box animation */
+.sidebar.close .search-box {
+  background-color: #000000;
+}
+
+/* Sidebar menu item hover animation */
+.sidebar li a {
+  transition: background var(--tran-04);
+}
+
+/* Sidebar menu item hover text/icon color animation */
+.sidebar li a:hover .icon,
+.sidebar li a:hover .text {
+  color: var(--sidebar-color);
+}
+
+/* ===== Home ===== */
+.home {
+  position: relative;
+  height: 8vh;
+  left: 250px;
+  width: calc(100% - 250px);
+  background: var(--body-color);
+  transition: var(--tran-05);
+}
+
+/* Sidebar close home animation */
+.sidebar.close ~ .home {
+  left: 88px;
+  width: calc(100% - 88px);
+}
+
+/* ===== Container ===== */
+.meat,
+.vegetable,
+.others {
+  position: relative;
+  height: 24vh;
+  left: 250px;
+  max-width: 92%;
+  margin: 0% 1% 1% 1%;
+  border-radius: 15px;
+  background-color: #1c1c1c;
+  transition: var(--tran-05);
+}
+
+/* Sidebar close container animation */
+.sidebar.close ~ .meat,
+.sidebar.close ~ .vegetable,
+.sidebar.close ~ .others {
+  left: 88px;
+  width: calc(95% - 61px);
+}
+
+/* ===== Checkbox ===== */
+.checkbox {
+  position: relative;
+  height: 30vh;
+  padding: 0.3% 1% 0 1.5%;
+}
+
+/* Checkbox label animation */
+.meat label,
+.others label {
+  transition: color var(--tran-03);
+}
+
+/* Checkbox check animation */
+#check:checked {
+  accent-color: rgb(0, 102, 255);
+}
+
+/* ===== Button ===== */
+.button {
+  display: flex;
+  justify-content: flex-end;
+  animation: slideInRight 1s ease; /* Slide-in animation */
+}
+
+/* Slide-in animation keyframes */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Button hover color animation */
+.button .clear:hover {
+  background: #fc6656;
+}
+
+.button .generate:hover {
+  background: #56bffc;
+}
+
+.button .surprise:hover {
+  background: #f79940;
+}
+
+.button:hover {
+  color: #ffffff;
+}

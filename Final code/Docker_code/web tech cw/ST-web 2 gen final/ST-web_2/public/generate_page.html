@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--CSS-->
+    <style>
+        /* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Set body background to black */
+body {
+    background-color: black;
+}
+
+#video-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1; /* Ensure the video is behind other content */
+}
+
+/* Center the content vertically and horizontally */
+#banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Set to full viewport height */
+}
+
+/* Style form container */
+form {
+    width: 750px;
+    height: 350px;
+}
+
+/* Center text content */
+.container {
+    text-align: center;
+    color: white; /* Set text color to white */
+}
+
+/* Style dish name */
+#dishName {
+    font-size: 24px;
+}
+
+/* Style dish image */
+#dishImage img {
+    width: 100%;
+    height: auto;
+}
+
+/* Style ingredients and steps text */
+#ingredientsText,
+#stepsText {
+    height: 150px;
+    width: 100%;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+    padding: 10px;
+    margin-bottom: 20px; /* Add space between text and buttons */
+}
+
+/* Style buttons */
+.button {
+    background-color: var(--primary-color); /* Set button background color */
+    color: white; /* Set button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px; /* Add space between buttons */
+}
+
+.back {
+    background-color: var(--primary-color); /* Set button background color */
+    color: white; /* Set button text color */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-right: 10px; /* Add space between buttons */
+    text-decoration: none; /* Remove underline */
+}
+
+
+/* Adjust button width */
+#SurpriseButton {
+    width: 150px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    form {
+        width: 90%; /* Adjust form width for smaller screens */
+    }
+}
+
+    </style>
+    <!-- <link rel="stylesheet" href="style2.css">  -->
+
+    <!--Bosicons CSS-->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+
+    <title>Food Recipe</title>
+    <script src="script2.js"></script>
+</head>
+
+<body>
+
+    <video autoplay muted loop id="video-bg" preload="fixed">
+        <source src="/images/7677876-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+<section id="banner" style="height: 350px;">
+    <section style="width: 500px;height: 100.427px;">
+        <form style="height: 279px;width: 750px;">
+            <div class="container">
+                <div class="row">
+                <div class="col-md-12">
+                    <header class="major" id="dishName" style="height: 50px; text-align: center;">
+                        <small class="form-text" style="font-size: 20px; margin-left: -370px;">Rosat beef</small>
+                    </header>
+                </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="col-md-6" id="dishImage" style="width: 330px;"><img src="assets/img/pic10.jpg" alt=""
+                            style="width: 300px;"></div>
+                    <div class="col-md-6">
+                        <div id="ingredientsText" style="height: 247.115px; width: 380px; overflow-y: auto;">
+                            Ingredients: Nunc lacinia ante
+                            nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus
+                            ornare mi ut ante
+                            amet placerat aliquet. Volutpat commodo eu sed ante lacinia. Sapien a lorem in integer
+                            ornare praesent commodo
+                            adipiscing arcu in massa commodo lorem accumsan at odio massa ac ac. Semper adipiscing
+                            varius montes viverra
+                            nibh in adipiscing blandit tempus accumsan.</div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <p id="stepsText"
+                            style="height: 247.115px; width: 380px; overflow-y: auto; font-family: inherit; font-size: inherit;">
+                            Steps: Nunc lacinia ante
+                            nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus
+                            ornare mi ut ante
+                            amet placerat aliquet. Volutpat commodo eu sed ante lacinia. Sapien a lorem in integer
+                            ornare praesent commodo
+                            adipiscing arcu in massa commodo lorem accumsan at odio massa ac ac. Semper adipiscing
+                            varius montes viverra
+                            nibh in adipiscing blandit tempus accumsan.
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <a id="SurpriseButton" class="button surprise" style="width: 132.167px;">surprise me</a>
+                    <a href="Menu_page.html" class="back" style="width: 132.167px;">back</a>
+                </div>
+            </div>
+        </form>
+    </section>
+</section>
+<script src="main2.js"></script>
+<script src="main.js"></script>
+</body>
